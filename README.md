@@ -177,6 +177,36 @@ ollama serve
 - Set `SECRET_KEY` environment variable in production
 - CORS is configured for localhost only
 
+## Challenges and Solutions
+
+### AI Hallucinations
+**Problem**: The AI would receive a newsletter and invent that the company accepted my deletion request. Classic hallucination.
+
+**Solution**: Transformed the AI from "dumb summarizer" to "judge first, summarize second". The prompt now asks: "Is this a real GDPR response or just marketing noise? If noise, return IGNORE. If real, summarize it."
+
+### Too Many False Positives
+**Problem**: The tracking tab was polluted with newsletters sent after my deletion request. The system thought any email from a flagged company was a response.
+
+**Solution**: Implemented a 3-layer filter:
+1. Technical filter: Check for `List-Unsubscribe` header → instant rejection
+2. Keyword filter: Reject subjects containing "promo", "black friday", "welcome", etc.
+3. AI filter: If it passes the first two, AI verifies the content
+
+### Performance with Large Inboxes
+**Problem**: Opening the dashboard with thousands of emails caused major lag.
+
+**Solution**: Implemented pagination. Only 50 emails render initially, with a "Load more" button. The page now loads instantly.
+
+### Whitelist Persistence
+**Problem**: Users wanted to protect entire senders, not just individual emails.
+
+**Solution**: Added a `Whitelist` table in the database. When you protect a sender, all their emails (past and future) are automatically protected.
+
+### Company Stalling Tactics
+**Problem**: Companies love to say "go to our website" or "contact this other department" to avoid processing requests.
+
+**Solution**: The AI detects these patterns and auto-generates responses citing GDPR Article 12.2, which requires them to process requests through the same channel they were received.
+
 ## License
 
 MIT
