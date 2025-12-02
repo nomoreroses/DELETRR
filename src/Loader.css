@@ -1,0 +1,74 @@
+/* src/Loader.css */
+
+.loader-toast {
+  position: fixed;
+  bottom: 32px;       /* En bas */
+  right: 32px;        /* À droite */
+  width: auto;        /* Taille adaptative */
+  max-width: 400px;
+  
+  /* Design "Carte" élégant (Notion/Gemini style) */
+  background: rgba(20, 20, 20, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 16px 20px;
+  
+  display: flex;      /* Alignement horizontal */
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;          /* Espace entre spinner et texte */
+  
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  
+  /* Petite animation d'entrée */
+  animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.2s ease;
+}
+
+/* Le spinner miniature */
+.minimal-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-top-color: #6366f1; /* Indigo */
+  border-right-color: #6366f1;
+  animation: spin 1s linear infinite;
+  flex-shrink: 0; /* Empêche le spinner de s'écraser */
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Texte compact */
+.loader-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left; /* Texte aligné à gauche */
+}
+
+.loader-info h2 {
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 0.3px;
+}
+
+.loader-info p {
+  color: #9ca3af;
+  font-family: monospace;
+  font-size: 11px;
+  margin: 4px 0 0 0;
+}

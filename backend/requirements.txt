@@ -1,0 +1,8 @@
+flask==3.0.0
+flask-cors==4.0.0
+flask-sqlalchemy==3.1.1
+requests
+googlesearch-python
+# concurrent-futures is part of the standard library and is removed from the install list.
+# The following standard libraries are included in Python and do not need to be listed:
+# datetime, os, imaplib, smtplib, email, re, threading, time, json
