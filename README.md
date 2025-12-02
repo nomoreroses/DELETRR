@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./src/assets/logo.webp" alt="DELETRR" width="200">
+</p>
+
 # DELETRR
 
 AI-powered GDPR compliance tool. Scans your inbox to detect marketing emails, auto-generates data deletion requests (Right to be Forgotten), and tracks company responses.
